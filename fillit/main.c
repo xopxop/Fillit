@@ -7,6 +7,11 @@
 #include <unistd.h>
 #include "../libft/get_next_line.h"
 
+/*
+  store_blocks stores each tetrimino in a linked list, while using check_block to check each tetrimino.
+  currently unfinished, only finds the first tetrimino from a file.
+*/
+
 int	store_blocks(t_block **first, char *file)
 {
   int fd;
@@ -23,10 +28,13 @@ int	store_blocks(t_block **first, char *file)
     {
       if (get_next_line(fd, &buf[i]) > 1 || ft_strlen(buf[i++]) != 4)
 	return (0);
-      ft_putendl(buf[i - 1]); //temporary output for debugging
     }
-  return (check_block(buf)); //function to check if tetromino is valid
+  return (check_block(buf));
 }
+
+/*
+  check_block uses both check_valid and count_adjacent to fully determine if the tetrimino is valid.
+*/
 
 int	check_block(char **tetro)
 {
@@ -48,7 +56,9 @@ int	check_block(char **tetro)
     }
   return ((adj >= 6));
 }
-
+/*
+  check_valid checks if the tetrimino only contains '.' and '#', and that there is precisely 4 '#' characters.
+*/
 int	check_valid(char **tetro)
 {
   int i;
@@ -73,6 +83,10 @@ int	check_valid(char **tetro)
   return ((count == 4));
 }
 
+/*
+  count_adjacent counts how many adjacent '#' characters each '#' character has.
+*/
+
 int count_adjacent(char **tetro, int i, int j)
 {
   int count;
@@ -92,6 +106,10 @@ int count_adjacent(char **tetro, int i, int j)
      count++;
  return (count);
 }
+
+/*
+  add_block adds the block to the end of a linked list.
+*/
 
 void	add_block(t_block **first, char **block)
 {
