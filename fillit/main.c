@@ -81,6 +81,7 @@ int	check_block(char **tetro)
 	  adj += count_adjacent(tetro, i, j - 1);
       i++;
     }
+  shift_tetro(tetro);
   return ((adj >= 6));
 }
 /*
@@ -174,6 +175,76 @@ void	print_blocks(t_block *first) // tmp function to print blocks for debugging
       first = first->next;
       if (first)
 	ft_putchar('\n');
+    }
+}
+
+/*
+  amount_x finds how much a tetromino has to be shifted to the left
+*/
+
+int amount_x(char **tetro)
+{
+  int row;
+  int col;
+
+  col = 0;
+  while (col < 4)
+    {
+      row = 0;
+      while(row < 4)
+	  if (tetro[row++][col] == '#')
+	    return (col);
+      col++;
+    }
+  return (0);
+}
+
+/*
+  amount_x finds how much a tetromino has to be shifted up
+*/
+
+int amount_y(char **tetro)
+{
+  int row;
+  int col;
+
+  row = 0;
+  while (row < 4)
+    {
+      col = 0;
+      while(col < 4)
+	  if (tetro[row][col++] == '#')
+	    return (row);
+      row++;
+    }
+  return (0);
+}
+
+/*
+  shift_tetro shifts the tetromino on the x and y axis to the upper left corner
+*/
+void	shift_tetro(char **tetro)
+{
+  int row;
+  int col;
+  int xy[2];
+
+  xy[0] = amount_x(tetro);
+  xy[1] = amount_y(tetro);
+  row = 0;
+  while (row < 4)
+    {
+      col = 0;
+      while (col < 4)
+	{
+	  if ((tetro)[row][col] == '#')
+	    {
+	      (tetro)[row][col] = '.';
+	      (tetro)[row - xy[1]][col - xy[0]] = '#';
+	    }
+	  col++;
+	}
+      row++;
     }
 }
 

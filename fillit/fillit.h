@@ -32,4 +32,12 @@ void			add_block(t_block **first, char **block);
 
 int			check_newline(int fd);
 
+void			ft_shifting(char **tetro);
+
+int			amount_x(char **tetro);
+
+int			amount_y(char **tetro);
+
+void			shift_tetro(char **tetro);
+
 #endif
