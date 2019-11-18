@@ -1,37 +1,27 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   fillit.h                                           :+:      :+:    :+:   */
+/*   get_next_line.h                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: sadawi <sadawi@student.hive.fi>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/25 14:36:39 by sadawi            #+#    #+#             */
-/*   Updated: 2019/11/18 02:14:29 by dthan            ###   ########.fr       */
+/*   Updated: 2019/11/05 17:35:52 by sadawi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef FILLIT_H
-# define FILLIT_H
-# define TRUE 1
-# define FALSE 0
+#ifndef GET_NEXT_LINE_H
+# define GET_NEXT_LINE_H
 
-# include <stdio.h>
+# define BUFF_SIZE 3
 
-typedef struct		s_block
+typedef struct		s_fd
 {
-	char			**tet_id;
-  	char			character;
-	struct s_block	*next;
-}					t_block;
+	char			*str;
+	int				fd;
+	struct s_fd		*next;
+}					t_fd;
 
-int			store_blocks(t_block **first, char *file);
-
-int			check_block(char **tetro);
-
-int			check_valid_char(char **tetro);
-
-int			count_adjacent(char **tetro, int i, int j);
-
-void			add_block(t_block **first, char **block);
+int					get_next_line(const int fd, char **line);
 
 #endif
