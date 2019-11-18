@@ -21,15 +21,30 @@ int	store_blocks(t_block **first, char *file)
   
   if ((fd = open(file, O_RDONLY)) == -1)
     return (0);
-  if (!(buf = (char**)malloc(sizeof(*buf) * 4)))
-    return (0);
-  i = 0;
-  while (i < 4)
+  while (1)
     {
-      if (get_next_line(fd, &buf[i]) > 1 || ft_strlen(buf[i++]) != 4)
+      if (!(buf = (char**)malloc(sizeof(*buf) * 4)))
 	return (0);
+      i = 0;
+      while (i < 4)
+	  if (get_next_line(fd, &buf[i]) < 1 || ft_strlen(buf[i++]) != 4)
+	    return (0);
+      if (check_block(buf))
+	  add_block(first, buf);
+      else
+	{
+	  free(buf);
+	  return (0);
+	}
+      if (!get_next_line(fd, &buf[i]))
+	  return (1);
+      else if (!ft_strequ(buf[i], ""))
+	{
+	  free(buf[i]);
+	  return (0);
+	}
     }
-  return (check_block(buf));
+  return (0);
 }
 
 /*
@@ -116,24 +131,45 @@ void	add_block(t_block **first, char **block)
   t_block *tmp;
   t_block *new;
   char c;
-  
+
   c = 'A';
   tmp = *first;
-  while (tmp->next)
-    {
-      tmp = tmp->next;
-      c++;
-    }
+  if (*first)
+      while (tmp->next)
+	{
+	  tmp = tmp->next;
+	  c++;
+	}
   new = (t_block*)malloc(sizeof(t_block));
   new->tetro = block;
   new->chr = c;
-  tmp->next = new;
+  new->next = NULL;
+  if (!*first)
+    *first = new;
+  else
+    tmp->next = new;
+}
+
+void	print_blocks(t_block *first) // tmp function to print blocks for debugging
+{
+  int i;
+
+  while (first)
+    {
+      i = 0;
+      while (i < 4)
+	ft_putendl(first->tetro[i++]);
+      first = first->next;
+      if (first)
+	ft_putchar('\n');
+    }
 }
 
 int		main(int argc, char **argv)
 {
   t_block *blocks;
 
+  blocks = NULL;
   if (argc != 2)
     ft_putstr("./fillit [input_file]\n");
   else
@@ -141,8 +177,7 @@ int		main(int argc, char **argv)
       if (!store_blocks(&blocks, argv[1]))
 	ft_putstr("error");
       else
-	ft_putstr("tetromino is valid");
+	print_blocks(blocks);
     }
   return (0);
 }
-
