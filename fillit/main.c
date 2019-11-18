@@ -16,7 +16,6 @@ int	store_blocks(t_block **first, char *file)
 {
   int fd;
   char **buf;
-  char *tmp;
   int i;
   
   if ((fd = open(file, O_RDONLY)) == -1)
@@ -36,15 +35,28 @@ int	store_blocks(t_block **first, char *file)
 	  free(buf);
 	  return (0);
 	}
-      if (!get_next_line(fd, &buf[i]))
-	  return (1);
-      else if (!ft_strequ(buf[i], ""))
-	{
-	  free(buf[i]);
-	  return (0);
-	}
+      if ((i = check_newline(fd)) != -1)
+	return (i);
     }
   return (0);
+}
+/*
+  check_newline checks if there is a line which only contains the newline character '\n' between blocks.
+  Returns 1 when file has been read completely.
+  If anything else is found, returns 0 which indicates an error.
+*/
+int	check_newline(int fd)
+{
+  char *tmp;
+  
+  if (!get_next_line(fd, &tmp))
+    return (1);
+  else if (!ft_strequ(tmp, ""))
+    {
+      free(tmp);
+      return (0);
+    }
+  return (-1);
 }
 
 /*

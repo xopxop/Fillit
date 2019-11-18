@@ -30,4 +30,6 @@ int			count_adjacent(char **tetro, int i, int j);
 
 void			add_block(t_block **first, char **block);
 
+int			check_newline(int fd);
+
 #endif
