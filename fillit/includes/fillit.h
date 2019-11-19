@@ -36,5 +36,5 @@ int	amount_x(char **tetro);
 int	amount_y(char **tetro);
 void	shift_tetro(char **tetro);
 void	print_blocks(t_block *first);
-
+void	change_char(t_block *block);
 #endif

@@ -50,17 +50,37 @@ void	add_block(t_block **first, char **block)
 	c = 'A';
 	tmp = *first;
 	if (*first)
+	  {
+	    c = 'B';
 		while (tmp->next)
 		{
 			tmp = tmp->next;
 			c++;
 		}
+	  }
 	new = (t_block*)malloc(sizeof(t_block));
 	new->tetro = block;
 	new->chr = c;
+	change_char(new);
 	new->next = NULL;
 	if (!*first)
 		*first = new;
 	else
 		tmp->next = new;
+}
+
+void	change_char(t_block *block)
+{
+  int i;
+  int j;
+
+  i = 0;
+  while (i < 4)
+    {
+      j = 0;
+      while (j < 4)
+	  if (block->tetro[i][j++] == '#')
+	    block->tetro[i][j - 1] = block->chr;
+      i++;
+    }
 }
