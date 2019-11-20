@@ -6,7 +6,7 @@
 /*   By: sadawi <sadawi@student.hive.fi>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/17 16:27:35 by sadawi            #+#    #+#             */
-/*   Updated: 2019/10/29 13:50:58 by sadawi           ###   ########.fr       */
+/*   Updated: 2019/11/20 16:49:06 by dthan            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -153,5 +153,7 @@ t_list				*ft_strsplitlst(const char *str, char c);
 void				ft_swap(int *a, int *b);
 
 void				ft_foreach(int *tab, int length, void(*f)(int));
+
+int				ft_sqrt(int nbr);
 
 #endif

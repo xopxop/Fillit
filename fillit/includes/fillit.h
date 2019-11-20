@@ -37,4 +37,14 @@ int	amount_y(char **tetro);
 void	shift_tetro(char **tetro);
 void	print_blocks(t_block *first);
 void	change_char(t_block *block);
+
+// Grid file
+
+char	*genline(int size);
+char	**gen_board(int size);
+int		count_tetromines(t_block *blocks);
+int		board_starting_size(int tetromines_nbr);
+void	print_board(char **board);
+void	board(t_block *blocks);
+
 #endif

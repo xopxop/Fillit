@@ -6,7 +6,7 @@
 #    By: sadawi <sadawi@student.hive.fi>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2019/10/16 12:10:11 by sadawi            #+#    #+#              #
-#*   Updated: 2019/11/19 00:48:16 by dthan            ###   ########.fr       *#
+#*   Updated: 2019/11/20 12:51:58 by dthan            ###   ########.fr       *#
 #                                                                              #
 #******************************************************************************#
 
@@ -21,8 +21,8 @@ all: $(NAME)
 
 $(NAME):
 	@$(RUN_LIB)
-	gcc $(FLAGS) -c $(SRCS) $(INCL)
-	gcc $(FLAGS) -o $(NAME) $(OBJS) ./libft/libft.a
+	gcc $(FLAGS) -c $(SRCS) $(INCL) -g
+	gcc $(FLAGS) -o $(NAME) $(OBJS) ./libft/libft.a -g
 
 
 clean:
