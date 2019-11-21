@@ -47,4 +47,13 @@ int		board_starting_size(int tetromines_nbr);
 void	print_board(char **board);
 void	board(t_block *blocks);
 
+// Placing blocks
+
+char	**place_blocks(char **prev_grid, t_block *block);
+int	place_tetro(char **grid, int gridy, int gridx, char **tetro);
+int	grid_find_empty(char **grid, int *gdyx);
+char	**duplicate_grid(char **grid);
+char	**fill_board(t_block *blocks);
+int	check_tetro_fit(char **grid, int gridy, int gridx, char **tetro);
+
 #endif

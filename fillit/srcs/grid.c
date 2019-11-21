@@ -26,7 +26,7 @@ char	*gen_line(int size)
 		return (NULL);
 	while (i < size)
 	{
-		line[i] = '?';
+		line[i] = '.';
 		i++;
 	}
 	line[i] = '\0';
@@ -118,5 +118,8 @@ void	board(t_block *blocks)
 	tetromines_nbr = count_tetromines(blocks);
 	board_size = board_starting_size(tetromines_nbr);
 	board = gen_board(board_size);
+	ft_putchar('\n'); //tmp
 	print_board(board);
+	ft_putchar('\n'); //tmp
+        print_board(fill_board(blocks)); //tmp
 }
