@@ -4,6 +4,10 @@
 #include "../../libft/libft.h"
 #include <stdio.h>
 
+/*
+** duplicate_grid creates a duplicate from a grid.
+*/
+
 char	**duplicate_grid(char **grid)
 {
   char **grid_copy;
@@ -22,6 +26,10 @@ char	**duplicate_grid(char **grid)
     }
   return (grid_copy);
 }
+
+/*
+** grid_find_empty finds the next empty space from the grid.
+*/
 
 int	grid_find_empty(char **grid, int *gdyx)
 {
@@ -45,6 +53,10 @@ int	grid_find_empty(char **grid, int *gdyx)
   return (0);
 }
 
+/*
+** place_tetro places a tetromino in the grid.
+*/
+
 int	place_tetro(char **grid, int gridy, int gridx, char **tetro)
 {
   int x;
@@ -67,6 +79,10 @@ int	place_tetro(char **grid, int gridy, int gridx, char **tetro)
     }
   return (1);
 }
+
+/*
+** check_tetro_fit checks if the tetromino will fit in the grid.
+*/
 
 int	check_tetro_fit(char **grid, int gridy, int gridx, char **tetro)
 {
@@ -92,6 +108,11 @@ int	check_tetro_fit(char **grid, int gridy, int gridx, char **tetro)
     }
   return ((count == 4));
 }
+
+/*
+** place_blocks handles the backtracking, by placing blocks and then going back to previous grid positions
+** if no result is found.
+*/
 
 char	**place_blocks(char **prev_grid, t_block *block)
 {
@@ -119,6 +140,10 @@ char	**place_blocks(char **prev_grid, t_block *block)
     } 
 }
 
+/*
+** board_bigger makes each side of the board bigger by 1.
+*/
+
 char	**board_bigger(char **grid)
 {
   int i;
@@ -128,6 +153,10 @@ char	**board_bigger(char **grid)
     i++;
   return (gen_board(i + 1));
 }
+
+/*
+** fill_board is the main function that handles everything and returns the finished board.
+*/
 
 char	**fill_board(t_block *blocks)
 {
