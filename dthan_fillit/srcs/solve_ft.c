@@ -56,19 +56,37 @@ void	shift_ordinate(int *ordinate, int x, int y)
 	}
 }
 
-int		*copy_ordinate(int *src)
+int		copy_ordinate(int *dst, int *src)
 {
+	int *pdst;
 	int i;
-	int *dst;
 
 	i = 0;
-	dst = (int*)malloc(sizeof(int) * 8);
+	pdst = dst;
 	while (i < 8)
 	{
-		dst[i] = src[i];
+		pdst[i] = src[i];
 		i++;
 	}
-	return (dst);
+	return (1);
+}
+
+void	clear_piece(char **grid, int *tab)
+{
+	int i;
+	int x;
+	int y;
+
+	x = 0;
+	y = 0;
+	i = 0;
+	while (i < 8)
+	{
+		y = tab[i + 1];
+		x = tab[i];
+		grid[y][x] = '.';
+		i += 2;
+	}
 }
 
 int		backtrack(t_block *blocks, char **board, int size)
@@ -78,26 +96,35 @@ int		backtrack(t_block *blocks, char **board, int size)
 	int *temp_ordinate;
 
 	row = 0;
+	temp_ordinate = (int *)malloc(sizeof(int) * 8);
 	if(!blocks)
+	{
+		free(temp_ordinate);
 		return (TRUE);
+	}
 	while (row < size)
 	{
 		col = 0;
 		while(col < size)
 		{
-			temp_ordinate = copy_ordinate(blocks->ordinate);
+			copy_ordinate(temp_ordinate, blocks->ordinate);
 			shift_ordinate(temp_ordinate, col, row);
-			if (collision(board, blocks, size, temp_ordinate))
+			if (not_collision(board, size, temp_ordinate))
 			{
 				place(blocks, temp_ordinate, board);
 				if (backtrack(blocks->next, board, size))
+				{
+					free(temp_ordinate);
 					return (TRUE);
+				}
+				clear_piece(board, temp_ordinate);
 				return (FALSE);
 			}
 			col++;
 		}
 		row++;
 	}
+	free(temp_ordinate);
 	return (FALSE);
 }
 

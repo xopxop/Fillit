@@ -28,14 +28,21 @@ int		piece_collide(int *ordinate, char **board)
 	return (TRUE);
 }
 
-int		box_collide(t_block *block, int size)
+int		box_collide(int *ordinate, int size)
 {
-	if (block->height > size || block->length > size)
+	int i;
+
+	i = 0;
+	while (i < 8)
+	{
+		if (ordinate[i] >= size || ordinate[i] > size)
 		return (FALSE);
+		i++;
+	}
 	return (TRUE);
 }
 
-int 	collision(char **board, t_block *block, int size, int *ordinate)
+int 	not_collision(char **board, int size, int *ordinate)
 {
-	return ((box_collide(block, size)) && (piece_collide(ordinate, board)));
+	return ((box_collide(ordinate, size)) && (piece_collide(ordinate, board)));
 }

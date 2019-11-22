@@ -45,8 +45,8 @@ int	count_adjacent(char **lines_read, int row, int col);
 
 // COlLISION FT
 int		piece_collide(int *ordinate, char **board);
-int		box_collide(t_block *block, int size);
-int 	collision(char **board, t_block *block, int size, int *ordinate);
+int		box_collide(int *ordinate, int size);
+int 	not_collision(char **board, int size, int *ordinate);
 
 // DISPLAY_FT
 void	print_board(char **board);
@@ -68,7 +68,7 @@ void	free_board(char **board, int size);
 void	shift_ordinate(int *ordinate, int x, int y);
 void	place(t_block *block, int *ordinate, char **board);
 void	shift_ordinate(int *ordinate, int x, int y);
-int		*copy_ordinate(int *src);
+int		copy_ordinate(int *dst, int *src);
 int		backtrack(t_block *blocks, char **board, int size);
 void	solve(t_block *blocks);
 
