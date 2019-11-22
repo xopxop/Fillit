@@ -12,19 +12,6 @@
 
 #include "fillit.h"
 
-void	free_board(char **board, int size)
-{
-	int i;
-
-	i = 0;
-	while(i < size)
-	{
-		ft_strdel(&board[i]);
-		i++;
-	}
-	free(board);
-}
-
 void	place(t_block *block, int *ordinate, char **board)
 {
 	int x;
@@ -41,34 +28,6 @@ void	place(t_block *block, int *ordinate, char **board)
 		board[y][x] = block->chr;
 		i += 2;
 	}
-}
-
-void	shift_ordinate(int *ordinate, int x, int y)
-{
-	int i;
-
-	i = 0;
-	while(i < 8)
-	{
-		ordinate[i] = ordinate[i] + x;
-		ordinate[i + 1] = ordinate[i + 1] + y;
-		i += 2;
-	}
-}
-
-int		copy_ordinate(int *dst, int *src)
-{
-	int *pdst;
-	int i;
-
-	i = 0;
-	pdst = dst;
-	while (i < 8)
-	{
-		pdst[i] = src[i];
-		i++;
-	}
-	return (1);
 }
 
 void	clear_piece(char **grid, int *tab)
@@ -118,6 +77,7 @@ int		backtrack(t_block *blocks, char **board, int size)
 					return (TRUE);
 				}
 				clear_piece(board, temp_ordinate);
+				free(temp_ordinate);
 				return (FALSE);
 			}
 			col++;
@@ -142,4 +102,5 @@ void	solve(t_block *blocks)
 		board = gen_board(size);
 	}
 	print_board(board);
+	free_board(board, size);
 }

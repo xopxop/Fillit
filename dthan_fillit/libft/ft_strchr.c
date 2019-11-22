@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_strchr.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sadawi <sadawi@student.hive.fi>            +#+  +:+       +#+        */
+/*   By: dthan <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/10/17 17:24:27 by sadawi            #+#    #+#             */
-/*   Updated: 2019/10/23 17:08:19 by sadawi           ###   ########.fr       */
+/*   Created: 2019/10/18 13:50:57 by dthan             #+#    #+#             */
+/*   Updated: 2019/10/18 14:21:23 by dthan            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,16 +14,13 @@
 
 char	*ft_strchr(const char *s, int c)
 {
-	int i;
-
-	i = 0;
-	while (s[i])
+	while (*s)
 	{
-		if (s[i] == c)
-			return ((char*)&s[i]);
-		i++;
+		if (*s == c)
+			return ((char*)s);
+		++s;
 	}
-	if (c == s[i])
-		return ((char*)&s[i]);
+	if (c == '\0')
+		return ((char*)s);
 	return (NULL);
 }

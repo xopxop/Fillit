@@ -3,17 +3,20 @@
 /*                                                        :::      ::::::::   */
 /*   ft_striter.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sadawi <sadawi@student.hive.fi>            +#+  +:+       +#+        */
+/*   By: dthan <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/10/22 12:55:18 by sadawi            #+#    #+#             */
-/*   Updated: 2019/10/22 13:29:37 by sadawi           ###   ########.fr       */
+/*   Created: 2019/10/21 13:50:59 by dthan             #+#    #+#             */
+/*   Updated: 2019/10/21 13:51:12 by dthan            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-void	ft_striter(char *s, void (*f)(char*))
+void	ft_striter(char *s, void (*f)(char *))
 {
-	while (*s)
-	{
-		(*f)(s++);
-	}
+	char *ptr;
+
+	if (!s || !f)
+		return ;
+	ptr = s;
+	while (*ptr)
+		f(ptr++);
 }

@@ -24,7 +24,10 @@ int	main(int argc, char **argv)
 		if (!store_blocks(&blocks, argv[1]))
 			ft_putstr("error");
 		else
+		{
 			solve(blocks);
+			free_blocks(blocks);
+		}
 	}
 	return (0);
 }

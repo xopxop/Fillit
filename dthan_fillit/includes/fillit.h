@@ -64,11 +64,8 @@ void	shift_tetro(char **tetro);
 
 
 // SOLVE_FT
-void	free_board(char **board, int size);
-void	shift_ordinate(int *ordinate, int x, int y);
 void	place(t_block *block, int *ordinate, char **board);
-void	shift_ordinate(int *ordinate, int x, int y);
-int		copy_ordinate(int *dst, int *src);
+
 int		backtrack(t_block *blocks, char **board, int size);
 void	solve(t_block *blocks);
 
@@ -77,10 +74,12 @@ int	store_blocks(t_block **block, char *file);
 void	add_block(t_block **block, char **lines_read);
 void	change_char(t_block *new);
 
+//ORDINATION_FT
+void	shift_ordinate(int *ordinate, int x, int y);
+void	copy_ordinate(int *dst, int *src);
 
-
-
-
-
+// FREE_FT
+void	free_board(char **board, int size);
+void    free_blocks(t_block *blocks);
 
 #endif

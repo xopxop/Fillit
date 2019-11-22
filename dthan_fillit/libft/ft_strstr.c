@@ -3,34 +3,32 @@
 /*                                                        :::      ::::::::   */
 /*   ft_strstr.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sadawi <sadawi@student.hive.fi>            +#+  +:+       +#+        */
+/*   By: dthan <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/10/17 17:53:01 by sadawi            #+#    #+#             */
-/*   Updated: 2019/10/28 19:32:07 by sadawi           ###   ########.fr       */
+/*   Created: 2019/10/22 13:09:32 by dthan             #+#    #+#             */
+/*   Updated: 2019/10/30 08:46:23 by dthan            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
-
-char	*ft_strstr(char const *haystack, char const *needle)
+char	*ft_strstr(const char *haystack, const char *needle)
 {
-	int i;
-	int j;
+	unsigned int pos;
+	unsigned int i;
 
-	i = 0;
-	j = 0;
 	if (!*needle)
 		return ((char*)haystack);
-	while (haystack[i])
+	pos = 0;
+	while (haystack[pos] != '\0')
 	{
-		while (haystack[i + j] == needle[j])
+		if (haystack[pos] == needle[0])
 		{
-			if (!needle[j + 1])
-				return ((char*)&haystack[i]);
-			j++;
+			i = 1;
+			while (needle[i] != '\0' && haystack[pos + i] == needle[i])
+				i++;
+			if (needle[i] == '\0')
+				return ((char*)&haystack[pos]);
 		}
-		i++;
-		j = 0;
+		pos++;
 	}
-	return (NULL);
+	return (0);
 }

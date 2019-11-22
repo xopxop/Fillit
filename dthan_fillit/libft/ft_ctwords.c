@@ -1,25 +1,30 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strsub.c                                        :+:      :+:    :+:   */
+/*   ft_ctwords.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: dthan <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/10/24 13:36:03 by dthan             #+#    #+#             */
-/*   Updated: 2019/10/26 04:41:15 by dthan            ###   ########.fr       */
+/*   Created: 2019/10/30 10:23:18 by dthan             #+#    #+#             */
+/*   Updated: 2019/10/30 10:23:26 by dthan            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-char	*ft_strsub(char const *string, unsigned int start, size_t len)
+int		ft_ctwords(char const *str, char c)
 {
-	char *substring;
+	size_t	count;
+	int		inside_a_word;
 
-	if (!string)
-		return (NULL);
-	if (!(substring = ft_memalloc(len + 1)))
-		return (NULL);
-	substring = ft_strncpy(substring, (char*)string + start, len);
-	return (substring);
+	inside_a_word = 0;
+	count = 0;
+	while (*str)
+	{
+		if (!inside_a_word && *str != c)
+			count++;
+		inside_a_word = (*str == c) ? 0 : 1;
+		str++;
+	}
+	return (count);
 }

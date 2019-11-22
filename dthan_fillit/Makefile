@@ -13,7 +13,8 @@
 NAME=fillit
 SRCS=./srcs/main.c ./srcs/board_ft.c ./srcs/check_ft.c ./srcs/collision_ft.c \
 		./srcs/display_ft.c ./srcs/get_info_ft.c ./srcs/shifting_ft.c \
-		./srcs/solve_ft.c ./srcs/store_block_ft.c
+		./srcs/solve_ft.c ./srcs/store_block_ft.c ./srcs/ordination_ft.c \
+		./srcs/free_ft.c
 OBJS=./*.o
 INCL=-I includes/
 FLAGS=-Wall -Wextra -Werror -g

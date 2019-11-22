@@ -1,25 +1,38 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strsub.c                                        :+:      :+:    :+:   */
+/*   ordination_ft.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: dthan <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/10/24 13:36:03 by dthan             #+#    #+#             */
-/*   Updated: 2019/10/26 04:41:15 by dthan            ###   ########.fr       */
+/*   Created: 2019/11/22 18:11:58 by dthan             #+#    #+#             */
+/*   Updated: 2019/11/22 18:12:00 by dthan            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
+#include "fillit.h"
 
-char	*ft_strsub(char const *string, unsigned int start, size_t len)
+void	shift_ordinate(int *ordinate, int x, int y)
 {
-	char *substring;
+	int i;
 
-	if (!string)
-		return (NULL);
-	if (!(substring = ft_memalloc(len + 1)))
-		return (NULL);
-	substring = ft_strncpy(substring, (char*)string + start, len);
-	return (substring);
+	i = 0;
+	while(i < 8)
+	{
+		ordinate[i] = ordinate[i] + x;
+		ordinate[i + 1] = ordinate[i + 1] + y;
+		i += 2;
+	}
+}
+
+void	copy_ordinate(int *dst, int *src)
+{
+	int i;
+
+	i = 0;
+	while (i < 8)
+	{
+		dst[i] = src[i];
+		i++;
+	}
 }
