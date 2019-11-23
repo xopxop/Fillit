@@ -39,8 +39,8 @@ void    free_blocks(t_block *blocks)
         temp_ordinate = blocks->ordinate;
         temp_line = blocks->tetro;
         blocks = blocks->next;
-        free(temp_block);
         free(temp_ordinate);
         free(temp_line);
+        free(temp_block);
     }
 }

@@ -30,6 +30,7 @@ int	check_newline(int fd)
 		free(tmp);
 		return (0);
 	}
+	free(tmp);
 	return (-1);
 }
 

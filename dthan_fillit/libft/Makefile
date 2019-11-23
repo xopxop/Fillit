@@ -49,7 +49,7 @@ INCLUDES=./
 all: $(NAME)
 
 $(NAME): $(SRCS)  ./libft.h
-	@gcc -Wall -Wextra -Werror -I$(INCLUDES) -c $(SRCS)
+	@gcc -Wall -Wextra -Werror -I$(INCLUDES) -c $(SRCS) -g
 	@ar rc $(NAME) $(OBJECTS)
 	@ranlib $(NAME)
 

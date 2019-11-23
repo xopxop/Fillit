@@ -81,5 +81,6 @@ void	copy_ordinate(int *dst, int *src);
 // FREE_FT
 void	free_board(char **board, int size);
 void    free_blocks(t_block *blocks);
+//void    free_line(char **lines_read);
 
 #endif

@@ -22,6 +22,7 @@ int	main(int argc, char **argv)
 	else
 	{
 		if (!store_blocks(&blocks, argv[1]))
+//		if (!store_blocks(blocks, argv[1]))
 			ft_putstr("error");
 		else
 		{

@@ -17,6 +17,7 @@
 ** store_blocks ft: check open file, and read input from the fd
 ** then check if the input is valid, if yes add input into linked list
 */
+
 int	store_blocks(t_block **block, char *file)
 {
 	int fd;
@@ -33,17 +34,24 @@ int	store_blocks(t_block **block, char *file)
 		while (line_num < 4)
 			if (get_next_line(fd, &lines_read[line_num]) < 1 ||\
 					ft_strlen(lines_read[line_num++]) != 4)
+			{
+				free_board(lines_read, line_num);
 				return (FALSE);
+			}
 		if (check_input(lines_read))
+		{
 			add_block(block, lines_read);
+			free_board(lines_read, 4);
+		}
 		else
 		{
-			free(lines_read);
+			free_board(lines_read, 4);
 			return (FALSE);
 		}
 		if ((line_num = check_newline(fd)) != -1)
 			return (line_num);
 	}
+	close(fd);
 	return (FALSE);
 }
 
