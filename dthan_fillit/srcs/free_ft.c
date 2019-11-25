@@ -29,7 +29,6 @@ void    free_blocks(t_block *blocks)
 {
     t_block *temp_block;
     int *temp_ordinate;
-    char **temp_line;
 
     temp_block = NULL;
     temp_ordinate = NULL;
@@ -37,10 +36,8 @@ void    free_blocks(t_block *blocks)
     {
         temp_block = blocks;
         temp_ordinate = blocks->ordinate;
-        temp_line = blocks->tetro;
         blocks = blocks->next;
         free(temp_ordinate);
-        free(temp_line);
         free(temp_block);
     }
 }

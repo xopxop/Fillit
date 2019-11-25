@@ -69,7 +69,10 @@ void	add_block(t_block **block, char **lines_read)
 		while(temp->next)
 		{
 			temp = temp->next;
-			character++;
+			if (character > 'Z')
+				character -= 26;
+			else
+				character++;
 		}
 	}
 	new = (t_block*)malloc(sizeof(t_block));
