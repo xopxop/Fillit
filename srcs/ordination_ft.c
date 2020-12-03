@@ -1,25 +1,38 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strcpy.c                                        :+:      :+:    :+:   */
+/*   ordination_ft.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: dthan <marvin@42.fr>                       +#+  +:+       +#+        */
+/*   By: sadawi <sadawi@student.hive.fi>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/10/17 15:53:24 by dthan             #+#    #+#             */
-/*   Updated: 2019/10/30 08:29:16 by dthan            ###   ########.fr       */
+/*   Created: 2019/11/27 14:33:05 by sadawi            #+#    #+#             */
+/*   Updated: 2019/11/27 14:33:12 by sadawi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-char	*ft_strcpy(char *dst, const char *src)
+#include "fillit.h"
+
+void	shift_ordinate(int *ordinate, int x, int y)
 {
-	unsigned int i;
+	int i;
 
 	i = 0;
-	while (src[i])
+	while (i < 8)
+	{
+		ordinate[i] = ordinate[i] + x;
+		ordinate[i + 1] = ordinate[i + 1] + y;
+		i += 2;
+	}
+}
+
+void	copy_ordinate(int *dst, int *src)
+{
+	int i;
+
+	i = 0;
+	while (i < 8)
 	{
 		dst[i] = src[i];
 		i++;
 	}
-	dst[i] = src[i];
-	return (dst);
 }

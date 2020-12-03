@@ -1,29 +1,21 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strncat.c                                       :+:      :+:    :+:   */
+/*   ft_sqrt.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: dthan <marvin@42.fr>                       +#+  +:+       +#+        */
+/*   By: sadawi <sadawi@student.hive.fi>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/10/18 13:42:33 by dthan             #+#    #+#             */
-/*   Updated: 2019/10/26 04:52:26 by dthan            ###   ########.fr       */
+/*   Created: 2019/11/27 16:56:17 by sadawi            #+#    #+#             */
+/*   Updated: 2019/11/27 16:56:20 by sadawi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
-
-char	*ft_strncat(char *dest, const char *src, size_t n)
+int	ft_sqrt(int n)
 {
-	size_t dest_len;
-	size_t i;
+	int i;
 
 	i = 0;
-	dest_len = ft_strlen(dest);
-	while (i < n && src[i] != '\0')
-	{
-		dest[dest_len + i] = src[i];
+	while (i * i < n)
 		i++;
-	}
-	dest[dest_len + i] = '\0';
-	return (dest);
+	return (i);
 }

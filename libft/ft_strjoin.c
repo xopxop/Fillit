@@ -3,23 +3,35 @@
 /*                                                        :::      ::::::::   */
 /*   ft_strjoin.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sadawi <sadawi@student.hive.fi>            +#+  +:+       +#+        */
+/*   By: dthan <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/10/21 18:58:51 by sadawi            #+#    #+#             */
-/*   Updated: 2019/10/25 14:08:14 by sadawi           ###   ########.fr       */
+/*   Created: 2019/10/24 13:55:44 by dthan             #+#    #+#             */
+/*   Updated: 2019/10/26 04:44:16 by dthan            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
-#include <stdlib.h>
 
-char	*ft_strjoin(char const *s1, char const *s2)
+char	*ft_strjoin(char const *string1, char const *string2)
 {
-	char *str;
+	char	*jointstring;
+	size_t	jointstringsize;
 
-	if (!(str = (char*)malloc(ft_strlen(s1) + ft_strlen(s2) + 1)))
+	if (string1 && string2)
+		jointstringsize = (size_t)(ft_strlen(string1) + ft_strlen(string2));
+	else if (string1)
+		jointstringsize = (size_t)(ft_strlen(string1));
+	else if (string2)
+		jointstringsize = (size_t)(ft_strlen(string2));
+	else
 		return (NULL);
-	ft_strcpy(str, s1);
-	ft_strcat(str, s2);
-	return (str);
+	if (!(jointstring = ft_memalloc(jointstringsize + 1)))
+		return (NULL);
+	if (string1)
+		jointstring = ft_strcpy(jointstring, (char*)string1);
+	else if (string2)
+		jointstring = ft_strcpy(jointstring, (char*)string2);
+	if (string1 && string2)
+		jointstring = ft_strcat(jointstring, (char*)string2);
+	return (jointstring);
 }

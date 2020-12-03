@@ -1,29 +1,30 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strncat.c                                       :+:      :+:    :+:   */
+/*   display_ft.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: dthan <marvin@42.fr>                       +#+  +:+       +#+        */
+/*   By: sadawi <sadawi@student.hive.fi>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/10/18 13:42:33 by dthan             #+#    #+#             */
-/*   Updated: 2019/10/26 04:52:26 by dthan            ###   ########.fr       */
+/*   Created: 2019/11/27 14:31:15 by sadawi            #+#    #+#             */
+/*   Updated: 2019/11/27 14:31:18 by sadawi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
+#include "fillit.h"
 
-char	*ft_strncat(char *dest, const char *src, size_t n)
+/*
+** Print board which has been filled in
+*/
+
+void	print_board(char **board)
 {
-	size_t dest_len;
-	size_t i;
+	int i;
 
 	i = 0;
-	dest_len = ft_strlen(dest);
-	while (i < n && src[i] != '\0')
+	while (board[i])
 	{
-		dest[dest_len + i] = src[i];
+		ft_putstr(board[i]);
+		ft_putchar('\n');
 		i++;
 	}
-	dest[dest_len + i] = '\0';
-	return (dest);
 }

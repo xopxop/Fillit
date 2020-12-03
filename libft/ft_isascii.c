@@ -3,14 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   ft_isascii.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sadawi <sadawi@student.hive.fi>            +#+  +:+       +#+        */
+/*   By: dthan <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/10/18 11:49:48 by sadawi            #+#    #+#             */
-/*   Updated: 2019/10/18 11:50:51 by sadawi           ###   ########.fr       */
+/*   Created: 2019/10/16 13:30:27 by dthan             #+#    #+#             */
+/*   Updated: 2019/10/17 15:40:22 by dthan            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-int		ft_isascii(int c)
+int	ft_isascii(int c)
 {
-	return (0 <= c && c < 128);
+	return ((c >= 0 && c <= 127) ? 1 : 0);
 }

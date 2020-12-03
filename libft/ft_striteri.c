@@ -3,21 +3,23 @@
 /*                                                        :::      ::::::::   */
 /*   ft_striteri.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sadawi <sadawi@student.hive.fi>            +#+  +:+       +#+        */
+/*   By: dthan <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/10/22 12:55:18 by sadawi            #+#    #+#             */
-/*   Updated: 2019/10/22 13:27:23 by sadawi           ###   ########.fr       */
+/*   Created: 2019/10/22 15:05:10 by dthan             #+#    #+#             */
+/*   Updated: 2019/10/23 13:54:25 by dthan            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-void	ft_striteri(char *s, void (*f)(unsigned int, char*))
+void	ft_striteri(char *s, void (*f)(unsigned int, char *))
 {
-	int i;
+	unsigned int	i;
 
+	if (!s || !(*s) || !f)
+		return ;
 	i = 0;
 	while (s[i])
 	{
-		(*f)(i, &s[i]);
-		i++;
+		f(i, &s[i]);
+		++i;
 	}
 }

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_memmove.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sadawi <sadawi@student.hive.fi>            +#+  +:+       +#+        */
+/*   By: dthan <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/10/18 14:54:37 by sadawi            #+#    #+#             */
-/*   Updated: 2019/11/06 13:47:00 by sadawi           ###   ########.fr       */
+/*   Created: 2019/10/19 17:17:42 by dthan             #+#    #+#             */
+/*   Updated: 2019/10/19 18:31:47 by dthan            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,25 +14,20 @@
 
 void	*ft_memmove(void *dst, const void *src, size_t len)
 {
-	size_t	i;
+	unsigned char *pd;
+	unsigned char *ps;
 
-	if (!dst && !src)
-		return (dst);
-	i = 0;
-	if (src > dst)
-		while (i < len)
-		{
-			((unsigned char*)dst)[i] = ((unsigned char*)src)[i];
-			i++;
-		}
-	else
+	pd = (unsigned char*)dst;
+	ps = (unsigned char*)src;
+	if (ps < pd)
 	{
-		i = 1;
-		while (i <= len)
-		{
-			((unsigned char*)dst)[len - i] = ((unsigned char*)src)[len - i];
-			i++;
-		}
+		pd += len;
+		ps += len;
+		while (len--)
+			*--pd = *--ps;
 	}
+	else
+		while (len--)
+			*pd++ = *ps++;
 	return (dst);
 }

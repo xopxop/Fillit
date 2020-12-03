@@ -3,27 +3,28 @@
 /*                                                        :::      ::::::::   */
 /*   ft_strcat.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sadawi <sadawi@student.hive.fi>            +#+  +:+       +#+        */
+/*   By: dthan <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/10/17 15:33:02 by sadawi            #+#    #+#             */
-/*   Updated: 2019/10/23 16:38:37 by sadawi           ###   ########.fr       */
+/*   Created: 2019/10/18 13:43:31 by dthan             #+#    #+#             */
+/*   Updated: 2019/10/30 08:26:14 by dthan            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-char	*ft_strcat(char *s1, const char *s2)
+char	*ft_strcat(char *dest, const char *src)
 {
-	int i;
-	int j;
+	unsigned int ct;
+	unsigned int i;
 
+	ct = 0;
+	while (dest[ct])
+		ct++;
 	i = 0;
-	j = 0;
-	while (s1[i])
-		i++;
-	while (s2[j])
+	while (src[i])
 	{
-		s1[i + j] = s2[j];
-		j++;
+		dest[ct] = src[i];
+		i++;
+		ct++;
 	}
-	s1[i + j] = '\0';
-	return (s1);
+	dest[ct] = '\0';
+	return (dest);
 }

@@ -3,17 +3,20 @@
 /*                                                        :::      ::::::::   */
 /*   ft_putstr_fd.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sadawi <sadawi@student.hive.fi>            +#+  +:+       +#+        */
+/*   By: dthan <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/10/21 16:12:49 by sadawi            #+#    #+#             */
-/*   Updated: 2019/11/06 13:49:14 by sadawi           ###   ########.fr       */
+/*   Created: 2019/10/23 14:27:03 by dthan             #+#    #+#             */
+/*   Updated: 2019/10/26 04:51:42 by dthan            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
-#include <unistd.h>
 
-void	ft_putstr_fd(char const *s, int fd)
+void	ft_putstr_fd(char const *string, int filedescriptor)
 {
-	write(fd, s, ft_strlen(s));
+	while (*string)
+	{
+		ft_putchar_fd(*string, filedescriptor);
+		string++;
+	}
 }

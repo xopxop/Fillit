@@ -3,16 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   ft_putchar_fd.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sadawi <sadawi@student.hive.fi>            +#+  +:+       +#+        */
+/*   By: dthan <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/10/21 17:22:48 by sadawi            #+#    #+#             */
-/*   Updated: 2019/10/22 17:15:24 by sadawi           ###   ########.fr       */
+/*   Created: 2019/10/23 14:19:35 by dthan             #+#    #+#             */
+/*   Updated: 2019/10/26 04:47:32 by dthan            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <unistd.h>
 
-void	ft_putchar_fd(char c, int fd)
+void	ft_putchar_fd(char c, int filedescriptor)
 {
-	write(fd, &c, 1);
+	write(filedescriptor, &c, 1);
 }

@@ -3,54 +3,53 @@
 /*                                                        :::      ::::::::   */
 /*   ft_itoa.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sadawi <sadawi@student.hive.fi>            +#+  +:+       +#+        */
+/*   By: dthan <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/10/21 17:31:41 by sadawi            #+#    #+#             */
-/*   Updated: 2019/10/25 14:07:16 by sadawi           ###   ########.fr       */
+/*   Created: 2019/10/25 11:21:14 by dthan             #+#    #+#             */
+/*   Updated: 2019/10/30 10:24:24 by dthan            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
 #include <stdlib.h>
 
-static int	ft_nbrlen(int nbr)
+static int	getsizenumber(unsigned int nb)
 {
-	int i;
+	unsigned int size;
 
-	i = 0;
-	if (nbr < 0)
-  	i++;
-	while (nbr || i == 0)
+	size = 0;
+	while (nb > 9)
 	{
-		nbr /= 10;
-		i++;
+		nb /= 10;
+		size++;
 	}
-	return (i);
+	return (size + 1);
 }
 
 char		*ft_itoa(int n)
 {
-	int		i;
-	char	*arr;
+	char			*string;
+	unsigned int	nbr;
+	unsigned int	index;
+	unsigned int	size;
 
-	i = ft_nbrlen(n);
-	if (!(arr = (char *)malloc(i + 1)))
-		return (NULL);
+	index = 0;
 	if (n < 0)
+		nbr = (unsigned int)(n * -1);
+	else
+		nbr = (unsigned int)(n);
+	size = (unsigned int)getsizenumber(nbr);
+	if (!(string = (char*)malloc(sizeof(char) *
+					(size + 1 + (n < 0 ? 1 : 0)))))
+		return (NULL);
+	if (n < 0 && (string[index] = '-'))
+		size++;
+	index = size - 1;
+	while (nbr >= 10)
 	{
-		arr[0] = '-';
-		if (n == -2147483648)
-		{
-			arr[1] = (char)(2 + '0');
-			n = -147483648;
-		}
-		n *= -1;
+		string[index--] = (char)(nbr % 10 + '0');
+		nbr /= 10;
 	}
-	arr[i--] = '\0';
-	while (i >= 0 && arr[i] != '2' && arr[i] != '-')
-	{
-		arr[i--] = (char)(n % 10 + '0');
-		n /= 10;
-	}
-	return (arr);
+	string[index] = (char)(nbr % 10 + '0');
+	string[size] = '\0';
+	return (string);
 }
